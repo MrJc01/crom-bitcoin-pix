@@ -1,0 +1,79 @@
+# ─── Binários e Build ─────────────────────────────────────────────
+bin/
+dist/
+/crom-pay
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ─── Go ──────────────────────────────────────────────────────────
+vendor/
+*.test
+*.out
+*.prof
+*.pprof
+coverage.out
+coverage.html
+cpu.prof
+mem.prof
+
+# ─── Dados da Carteira (NUNCA commitar!) ─────────────────────────
+data/
+wallet.db/
+.crom-pay/
+
+# ─── BadgerDB ────────────────────────────────────────────────────
+*.vlog
+*.sst
+MANIFEST
+KEYREGISTRY
+DISCARD
+
+# ─── Relatórios de Teste ─────────────────────────────────────────
+tests/reports/*.md
+tests/reports/*.html
+tests/reports/*.json
+tests/reports/*.log
+!tests/reports/.gitkeep
+
+# ─── IDE e Editor ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+*.bak
+*.tmp
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ─── Sistema Operacional ────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ─── Temporários ────────────────────────────────────────────────
+tmp/
+temp/
+.cache/
+
+# ─── Segurança (nunca commitar segredos!) ────────────────────────
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.jks
+seeds.txt
+mnemonic.txt

@@ -1,0 +1,41 @@
+{
+  "known_seeds": [
+    {
+      "name": "BIP-39 Test Vector #1 (12 words)",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about",
+      "passphrase": "",
+      "seed_hex": "5eb00bbddcf069084889a8ab9155568165f5c453ccb85e70811aaed6f6da5fc19a5ac40b389cd370d086206dec8aa6c43daea6690f20ad3d8d48b2d2ce9e38e4",
+      "network": "testnet",
+      "bip84_path": "m/84'/1'/0'/0/0",
+      "notes": "Vetor de teste padrão — NUNCA usar em mainnet!"
+    },
+    {
+      "name": "BIP-39 Test Vector #2 (24 words)",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art",
+      "passphrase": "",
+      "seed_hex": "408b285c123836004f4b8842c89324c1f01e901a2d0e0b14f5f1f8e1c579aba2ac57acb5c1a9ed3a0ad0c6b0c07e7d5e9c9edab8b99e5dc0e1b2ce3afdbe5e9",
+      "network": "testnet",
+      "bip84_path": "m/84'/1'/0'/0/0",
+      "notes": "Vetor 24 palavras — NUNCA usar em mainnet!"
+    }
+  ],
+  "invalid_mnemonics": [
+    "",
+    "foo bar baz",
+    "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon",
+    "hello world test invalid mnemonic words that should fail validation check"
+  ],
+  "test_passwords": {
+    "strong": "M1nh@S3nh@F0rt3!2024#BTC",
+    "minimum": "12345678",
+    "unicode": "日本語パスワード🔐",
+    "empty": ""
+  },
+  "address_prefixes": {
+    "mainnet_segwit": "bc1q",
+    "testnet_segwit": "tb1q",
+    "regtest_segwit": "bcrt1q",
+    "mainnet_legacy": "1",
+    "testnet_legacy": "m"
+  }
+}
