@@ -353,26 +353,27 @@ crom-bitcoin-pix/
 
 | Milestone | Status | Descrição | Testes |
 |---|---|---|---|
-| **01 — Wallet Core** | ✅ Completo | BIP-39/84, AES-GCM, Argon2id, CLI, Storage | 72 |
-| **02 — Lightning** | 🔜 Próximo | LND embutido, Neutrino, invoices BOLT-11 | — |
-| **03 — Nostr ID** | ⬜ Planejado | Identidade descentralizada, `user@crom.run` | — |
-| **04 — Pix UX** | ⬜ Planejado | QR Code, TUI, pagamento em 1 toque | — |
-| **05 — Multi-plat** | ⬜ Planejado | Mobile (Gomobile), Web (WASM), Desktop | — |
+| **01 — Wallet Core** | ✅ Completo | BIP-39/84, AES-GCM, Argon2id, CLI, Storage | 36 |
+| **02 — Lightning** | ✅ Completo | LND REST, TX Builder, Esplora API, pay/receive | 7 |
+| **03 — Nostr ID** | ✅ Completo | NIP-06, relay pool, publish, NIP-05, zaps | 8 |
+| **04 — Pix UX** | ✅ Completo | QR Code ASCII, TUI bubbletea, contatos, BIP-21 | 13 |
+| **05 — CI/CD** | ✅ Completo | GitHub Actions, build matrix, release multi-plat | 18 (E2E) |
+| **06 — Multi-plat** | ⬜ Futuro | Mobile (Gomobile), Web (WASM), Desktop | — |
 
-### O que foi entregue no Milestone 01
+### O que foi entregue
 
 - ✅ Geração de mnemônico BIP-39 (24 palavras, 256 bits)
 - ✅ Derivação BIP-84 (SegWit nativo `bc1q...` / `tb1q...`)
 - ✅ Cifra AES-256-GCM com Argon2id (64MB × 3 iter)
-- ✅ CLI completo: `wallet create`, `balance`, `address`, `restore`
-- ✅ Storage BadgerDB com prefixos isolados
-- ✅ Proteção de memória: `zeroBytes`, `Keychain.Zero`, `runtime.KeepAlive`
-- ✅ Validação de senha mínima no domínio (8 chars)
-- ✅ BIP-84 vetor oficial verificado
-- ✅ 72 testes em 6 camadas (100% pass)
-- ✅ Pentest automatizado (entropia, timing, tamper, exposure)
-- ✅ Documentação completa (8 guias + 10 specs + README)
-- ✅ Licença MIT
+- ✅ CLI: wallet, pay, receive, lightning, nostr, contacts, tui
+- ✅ Saldo real via mempool.space API (Esplora)
+- ✅ TX Builder P2WPKH (UTXO selection, witness signing, RBF)
+- ✅ LND REST Client (macaroon auth, invoices, channels)
+- ✅ Nostr NIP-06 (chaves do mesmo seed) + NIP-05 + relay pool
+- ✅ QR Code ASCII + URI BIP-21 + TUI bubbletea + lipgloss
+- ✅ Contatos CRUD com resolução automática (BTC/LN/NIP-05)
+- ✅ GitHub Actions CI + Release multi-plataforma (5 targets)
+- ✅ 107 testes em 11 fases (100% pass)
 
 ### Auditoria de Segurança
 
