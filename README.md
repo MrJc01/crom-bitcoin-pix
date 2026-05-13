@@ -6,7 +6,7 @@
 
 [![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://golang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-79%20passing-brightgreen?style=for-the-badge&logo=testcafe&logoColor=white)](#-testes)
+[![Tests](https://img.shields.io/badge/Tests-107%20passing-brightgreen?style=for-the-badge&logo=testcafe&logoColor=white)](#-testes)
 [![Bitcoin](https://img.shields.io/badge/Bitcoin-SegWit%20Native-F7931A?style=for-the-badge&logo=bitcoin&logoColor=white)](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki)
 [![Security](https://img.shields.io/badge/Security-Audited-blueviolet?style=for-the-badge&logo=hackthebox&logoColor=white)](#-segurança)
 
