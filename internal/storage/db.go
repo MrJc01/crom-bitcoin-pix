@@ -125,3 +125,30 @@ func (s *Store) Has(prefix, key []byte) bool {
 	_, err := s.Get(prefix, key)
 	return err == nil
 }
+
+// List retorna todos os valores com o prefixo dado.
+func (s *Store) List(prefix []byte) ([][]byte, error) {
+	if s.db == nil {
+		return nil, ErrStoreNotOpen
+	}
+
+	var results [][]byte
+	err := s.db.View(func(txn *badger.Txn) error {
+		opts := badger.DefaultIteratorOptions
+		opts.Prefix = prefix
+		it := txn.NewIterator(opts)
+		defer it.Close()
+
+		for it.Seek(prefix); it.ValidForPrefix(prefix); it.Next() {
+			item := it.Item()
+			val, err := item.ValueCopy(nil)
+			if err != nil {
+				return err
+			}
+			results = append(results, val)
+		}
+		return nil
+	})
+
+	return results, err
+}
