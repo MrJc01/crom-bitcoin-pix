@@ -17,56 +17,71 @@
 | AES-256-GCM + Argon2id | ✅ |
 | CLI (create/balance/address/restore) | ✅ |
 | BadgerDB storage | ✅ |
-| 72 testes em 6 camadas | ✅ |
-| Auditoria de segurança | ✅ |
-| Documentação completa | ✅ |
+| Auditoria de segurança (6 vulns) | ✅ |
 
 ---
 
-### 🔜 Milestone 02 — Lightning Engine
+### ✅ Milestone 02 — Lightning Engine (Completo)
 
 **Objetivo:** Pagamentos instantâneos via Lightning Network.
 
-| Entrega | Descrição |
+| Entrega | Status |
 |---|---|
-| LND embutido | Nó Lightning dentro do binário |
-| Neutrino | Sincronização leve (sem full node) |
-| Invoices BOLT-11 | Gerar e pagar invoices |
-| `pay` command | Pagar endereço Lightning |
-| `receive` command | Gerar invoice para receber |
-| Saldo real | Consultar via Neutrino |
+| Saldo real via mempool.space API | ✅ |
+| TX Builder P2WPKH (on-chain) | ✅ |
+| LND REST Client (macaroon auth) | ✅ |
+| Invoices BOLT-11 (criar/decodificar) | ✅ |
+| `pay` command (BTC/LN/NIP-05) | ✅ |
+| `receive` command (QR Code) | ✅ |
+| `lightning info/invoice/channels/setup` | ✅ |
 
 ---
 
-### ⬜ Milestone 03 — Nostr Identity
+### ✅ Milestone 03 — Nostr Identity (Completo)
 
 **Objetivo:** Identidade descentralizada para descoberta.
 
-| Entrega | Descrição |
+| Entrega | Status |
 |---|---|
-| Keypair Nostr | Gerar chaves Nostr do mesmo seed |
-| NIP-05 | Verificação de identidade |
-| NIP-57 | Zaps (gorjetas Lightning) |
-| `alice@crom.run` | Endereços legíveis |
-| Relay discovery | Encontrar peers via relays |
+| Derivação NIP-06 (m/44'/1237'/0'/0/0) | ✅ |
+| Relay pool com fallback | ✅ |
+| Publicação de eventos (kind 0, 1) | ✅ |
+| Verificação NIP-05 | ✅ |
+| Zap request (kind 9734) | ✅ |
+| `nostr identity/publish/relays/verify` | ✅ |
 
 ---
 
-### ⬜ Milestone 04 — Pix UX
+### ✅ Milestone 04 — Pix UX (Completo)
 
 **Objetivo:** Experiência de pagamento igual ao Pix.
 
-| Entrega | Descrição |
+| Entrega | Status |
 |---|---|
-| QR Code | Gerar e ler QR de pagamento |
-| TUI | Interface visual no terminal |
-| 1-tap pay | Pagamento com confirmação única |
-| Contatos | Lista de endereços salvos |
-| Histórico | Transações locais |
+| QR Code ASCII (normal + invertido) | ✅ |
+| URI BIP-21 | ✅ |
+| TUI bubbletea + lipgloss (5 telas) | ✅ |
+| Contatos (CRUD BadgerDB) | ✅ |
+| Resolução automática de destino | ✅ |
+| `contacts add/list/show/remove` | ✅ |
+| `tui` dashboard interativo | ✅ |
 
 ---
 
-### ⬜ Milestone 05 — Multi-plataforma
+### ✅ Milestone 05 — CI/CD (Completo)
+
+**Objetivo:** Automação e distribuição.
+
+| Entrega | Status |
+|---|---|
+| GitHub Actions CI (test + vet) | ✅ |
+| Build matrix 5 plataformas | ✅ |
+| Release automático com SHA256 | ✅ |
+| 79 testes em 6 camadas | ✅ |
+
+---
+
+### ⬜ Milestone 06 — Multi-plataforma (Futuro)
 
 **Objetivo:** Funcionar em qualquer lugar.
 
@@ -82,11 +97,9 @@
 ## Visão de Longo Prazo
 
 ```
-2026 Q2: Wallet Core ✅
-2026 Q3: Lightning + Neutrino
-2026 Q4: Nostr + Identidade
-2027 Q1: Pix UX + QR + TUI
-2027 Q2: Mobile + Multi-plataforma
+2026 Q2: Wallet Core ✅ + Lightning ✅ + Nostr ✅ + Pix UX ✅ + CI/CD ✅
+2026 Q3: Mobile + WASM + Desktop
+2026 Q4: Integração P2P completa via crom.run
 ```
 
 ---

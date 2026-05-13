@@ -115,6 +115,21 @@ run_go_tests "Wallet Core" "unit" "" "./internal/wallet/..." "60s"
 header "🗄️  Fase 1b: Testes Unitários (Storage)"
 run_go_tests "Storage CRUD" "storage" "" "./internal/storage/..." "60s"
 
+header "🔗 Fase 1c: Testes Unitários (Chain)"
+run_go_tests "Chain Client + TX" "chain" "" "./internal/chain/..." "60s"
+
+header "⚡ Fase 1d: Testes Unitários (Lightning)"
+run_go_tests "Lightning Client" "lightning" "" "./internal/lightning/..." "60s"
+
+header "🌐 Fase 1e: Testes Unitários (Nostr)"
+run_go_tests "Nostr Keys + Events" "nostr" "" "./internal/nostr/..." "60s"
+
+header "📱 Fase 1f: Testes Unitários (UI)"
+run_go_tests "QR Code + TUI" "ui" "" "./internal/ui/..." "60s"
+
+header "📇 Fase 1g: Testes Unitários (Contacts)"
+run_go_tests "Contacts CRUD" "contacts" "" "./internal/contacts/..." "60s"
+
 header "🔄 Fase 2: Testes de Integração"
 run_go_tests "Wallet Flow" "integration" "integration" "./tests/integration/..." "120s"
 
