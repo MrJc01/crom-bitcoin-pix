@@ -6,7 +6,7 @@
 
 [![Go](https://img.shields.io/badge/Go-1.25+-00ADD8?style=for-the-badge&logo=go&logoColor=white)](https://golang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Tests](https://img.shields.io/badge/Tests-72%20passing-brightgreen?style=for-the-badge&logo=testcafe&logoColor=white)](#-testes)
+[![Tests](https://img.shields.io/badge/Tests-79%20passing-brightgreen?style=for-the-badge&logo=testcafe&logoColor=white)](#-testes)
 [![Bitcoin](https://img.shields.io/badge/Bitcoin-SegWit%20Native-F7931A?style=for-the-badge&logo=bitcoin&logoColor=white)](https://github.com/bitcoin/bips/blob/master/bip-0084.mediawiki)
 [![Security](https://img.shields.io/badge/Security-Audited-blueviolet?style=for-the-badge&logo=hackthebox&logoColor=white)](#-segurança)
 
@@ -30,28 +30,50 @@ O **Crom Bitcoin Pix** faz parte do [crom.run](https://crom.run) — um ecossist
 
 ## 💡 O que é?
 
-**Crom Bitcoin Pix** é um único binário Go (~18MB) que é, ao mesmo tempo:
+**Crom Bitcoin Pix** é um único binário Go (~24MB) que é, ao mesmo tempo:
 
 | Componente | Status | Descrição |
 |---|---|---|
 | 💰 **Carteira Bitcoin HD** | ✅ Pronto | Chaves locais, BIP-39/84, SegWit nativo |
 | 🔐 **Cofre Criptográfico** | ✅ Pronto | AES-256-GCM + Argon2id, auditado |
-| ⚡ **Nó Lightning** | 🔜 Milestone 02 | Pagamentos instantâneos via LND + Neutrino |
-| 🌐 **Identidade Nostr** | ⬜ Milestone 03 | Descoberta P2P, endereços `alice@crom.run` |
-| 📱 **Pix UX** | ⬜ Milestone 04 | QR Code, pagamento em 1 toque |
+| ⚡ **Nó Lightning** | ✅ Pronto | LND REST client + TX builder on-chain |
+| 🌐 **Identidade Nostr** | ✅ Pronto | NIP-06/NIP-05, relay pool, publish, zaps |
+| 📱 **Pix UX** | ✅ Pronto | QR Code ASCII, TUI bubbletea, BIP-21 |
+| 📇 **Contatos** | ✅ Pronto | CRUD no BadgerDB, resolução automática |
+| 🔧 **CI/CD** | ✅ Pronto | GitHub Actions, binários multi-plataforma |
 
-### A visão: Bitcoin como Pix
+### Bitcoin como Pix — Todos os comandos
 
 ```bash
-# Hoje (Milestone 01) ─────────────────────────
-./crom-pay wallet create          # Cria carteira soberana
-./crom-pay wallet balance         # Consulta saldo
-./crom-pay wallet address         # Exibe endereço bc1q...
+# ── Wallet ────────────────────────────────────
+./crom-pay wallet create              # Cria carteira soberana
+./crom-pay wallet balance             # Consulta saldo real (mempool.space)
+./crom-pay wallet address             # Exibe endereço bc1q...
+./crom-pay wallet restore             # Restaura via mnemonic
 
-# Amanhã (Milestones 02-04) ────────────────────
-./crom-pay pay alice@crom.run 5000    # Paga como Pix!
-./crom-pay receive 5000               # Gera QR Lightning
-./crom-pay contacts add alice          # Adiciona contato
+# ── Pagamentos ────────────────────────────────
+./crom-pay pay <destino> <sats>       # Paga BTC/Lightning/NIP-05
+./crom-pay receive [amount]           # Gera QR Code para receber
+
+# ── Lightning ─────────────────────────────────
+./crom-pay lightning info             # Status do nó LND
+./crom-pay lightning invoice 5000     # Gera invoice
+./crom-pay lightning channels         # Lista canais
+./crom-pay lightning setup            # Configura LND
+
+# ── Nostr ─────────────────────────────────────
+./crom-pay nostr identity             # Exibe npub derivado
+./crom-pay nostr publish "hello"      # Publica nota
+./crom-pay nostr relays               # Lista relays
+./crom-pay nostr verify user@crom.run # Verifica NIP-05
+
+# ── Contatos ──────────────────────────────────
+./crom-pay contacts add alice --btc bc1q... --nip05 alice@crom.run
+./crom-pay contacts list              # Lista contatos
+./crom-pay contacts show alice        # Detalhes
+
+# ── TUI ───────────────────────────────────────
+./crom-pay tui                        # Interface visual interativa
 ```
 
 ---
