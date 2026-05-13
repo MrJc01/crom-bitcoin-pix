@@ -96,14 +96,59 @@ else
     log_fail "Criação duplicada pode ter sido aceita"
 fi
 
-# ─── Test 8: Wallet subcommand help ──────────────────────────────────────
-log_test "Test 8: wallet --help mostra subcomandos"
-WHELP=$("$BINARY" wallet --help 2>&1)
-for cmd in create balance restore address; do
-    if echo "$WHELP" | grep -q "$cmd"; then
-        log_pass "Subcomando '$cmd' listado"
+# ─── Test 9: Lightning info (sem LND) ────────────────────────────────────
+log_test "Test 9: lightning info sem LND mostra guia"
+LN_OUT=$("$BINARY" lightning info 2>&1 || true)
+if echo "$LN_OUT" | grep -qi "configurado\|setup\|Lightning"; then
+    log_pass "lightning info mostra status"
+else
+    log_fail "lightning info não funciona"
+fi
+
+# ─── Test 10: Lightning setup mostra guia ─────────────────────────────────
+log_test "Test 10: lightning setup mostra instruções"
+SETUP_OUT=$("$BINARY" lightning setup 2>&1 || true)
+if echo "$SETUP_OUT" | grep -qi "externo\|embutido\|gRPC\|embedded"; then
+    log_pass "lightning setup mostra modos"
+else
+    log_fail "lightning setup não mostra guia"
+fi
+
+# ─── Test 11: Nostr relays lista relays ──────────────────────────────────
+log_test "Test 11: nostr relays lista URLs"
+RELAYS_OUT=$("$BINARY" nostr relays 2>&1 || true)
+if echo "$RELAYS_OUT" | grep -qi "relay\|wss://"; then
+    log_pass "nostr relays lista endpoints"
+else
+    log_fail "nostr relays não lista nada"
+fi
+
+# ─── Test 12: Receive gera QR ────────────────────────────────────────────
+log_test "Test 12: receive gera QR com endereço"
+RCV_OUT=$(printf "%s\n" "$PASS" | "$BINARY" receive --data-dir "$TEST_DIR/wallet1" 2>&1)
+if echo "$RCV_OUT" | grep -q "tb1q\|bitcoin:"; then
+    log_pass "receive mostra endereço/URI"
+else
+    log_fail "receive não mostra endereço"
+fi
+
+# ─── Test 13: Pay destino inválido ───────────────────────────────────────
+log_test "Test 13: pay com destino inválido retorna erro"
+PAY_OUT=$(printf "%s\n" "$PASS" | "$BINARY" pay "invalido" --data-dir "$TEST_DIR/wallet1" 2>&1 || true)
+if echo "$PAY_OUT" | grep -qi "inválido\|erro\|invalid\|error"; then
+    log_pass "pay rejeita destino inválido"
+else
+    log_fail "pay não rejeitou destino inválido"
+fi
+
+# ─── Test 14: Help principal mostra todos os comandos ────────────────────
+log_test "Test 14: --help mostra todos os novos comandos"
+HELP_ALL=$("$BINARY" --help 2>&1)
+for cmd in wallet lightning nostr pay receive tui; do
+    if echo "$HELP_ALL" | grep -q "$cmd"; then
+        log_pass "Comando '$cmd' listado no help"
     else
-        log_fail "Subcomando '$cmd' não encontrado"
+        log_fail "Comando '$cmd' ausente no help"
     fi
 done
 

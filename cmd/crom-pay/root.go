@@ -45,6 +45,6 @@ func init() {
 
 	rootCmd.PersistentFlags().StringVar(&dataDir, "data-dir", defaultDataDir,
 		"Diretório de dados da carteira")
-	rootCmd.PersistentFlags().StringVar(&network, "network", "testnet",
+	rootCmd.PersistentFlags().StringVar(&network, "network", "mainnet",
 		"Rede Bitcoin: mainnet, testnet ou regtest")
 }

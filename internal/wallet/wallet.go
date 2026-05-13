@@ -242,8 +242,29 @@ func (w *Wallet) GetInfo() (*WalletInfo, error) {
 	return &WalletInfo{
 		Address: addr,
 		Network: w.network,
-		Balance: 0, // placeholder — Neutrino vem no Milestone 02
+		Balance: 0, // será atualizado via chain.Client
 	}, nil
+}
+
+// GetSeed retorna a seed decifrada para derivações adicionais (ex: Nostr).
+// SEGURANÇA: O chamador DEVE zerar o slice retornado após uso.
+func (w *Wallet) GetSeed(password string) ([]byte, error) {
+	encrypted, err := w.store.LoadEncryptedSeed()
+	if err != nil {
+		return nil, fmt.Errorf("falha ao carregar seed: %w", err)
+	}
+
+	seed, err := DecryptData(encrypted, password)
+	if err != nil {
+		return nil, ErrWrongPassword
+	}
+
+	return seed, nil
+}
+
+// ZeroBytes é a versão exportada de zeroBytes para uso externo.
+func ZeroBytes(b []byte) {
+	zeroBytes(b)
 }
 
 // Close fecha a carteira e libera recursos sensíveis da memória.
