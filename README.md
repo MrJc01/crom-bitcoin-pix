@@ -421,6 +421,12 @@ Leia o [guia de contribuição](documentacao/08-contribuicao.md) para padrões d
 
 ---
 
+## ⚠️​ Aviso Legal
+Este projeto não tem affiliação, endossamento ou patrocínio do Banco Central do Brasil (BCB).  
+o nome "Pix" é marca registrada do Banco Central do Brasil (BCB).
+
+---
+
 ## 📄 Licença
 
 [MIT](LICENSE) — © 2026 MrJc01 / [Crom Project](https://crom.run)
